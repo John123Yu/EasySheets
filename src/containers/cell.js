@@ -9,7 +9,9 @@ class Cell extends Component {
   constructor(props) {
     super(props);
   }
-  handleClick() {}
+  handleClick(e) {
+    e.preventDefault();
+  }
   onContextMenu(e) {
     e.preventDefault();
   }
@@ -18,11 +20,13 @@ class Cell extends Component {
       cell: true
     });
     return (
-      <div
+      <td
         className={classes}
         onClick={this.handleClick.bind(this)}
         onContextMenu={this.onContextMenu.bind(this)}
-      />
+      >
+        Hello
+      </td>
     );
   }
 }

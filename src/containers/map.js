@@ -8,19 +8,47 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
-    this.props.initMap(10, 10);
+    this.props.initMap(4, 4);
+  }
+  renderMap() {
+    if (this.props.actualMap.length) {
+      let row = -1;
+      let column = -1;
+      let map = this.props.actualMap.map((item, index) => {
+        row++;
+        column = -1;
+        return (
+          <tr key={index} className="rowDiv">
+            {item.map((subitem, i) => {
+              column++;
+              return (
+                <Cell
+                  key={Math.random()}
+                  row={row}
+                  column={column}
+                  // clicked={this.props.clickedMap[row][column]}
+                />
+              );
+            })}
+          </tr>
+        );
+      });
+      return map;
+    }
   }
   render() {
     return (
       <div>
-        Hello Map <Cell />
+        <table>
+          <tbody>{this.renderMap()}</tbody>
+        </table>
       </div>
     );
   }
 }
 
-function mapStateToProps({}) {
-  return {};
+function mapStateToProps({ actualMap }) {
+  return { actualMap };
 }
 
 function mapDispatchToProps(dispatch) {
