@@ -18,7 +18,7 @@ class Map extends Component {
         row++;
         column = -1;
         return (
-          <tr key={index} className="rowDiv">
+          <tr key={index} className="mapRow">
             {item.map((subitem, i) => {
               column++;
               return (

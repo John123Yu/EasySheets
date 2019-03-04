@@ -24,9 +24,7 @@ class Cell extends Component {
         className={classes}
         onClick={this.handleClick.bind(this)}
         onContextMenu={this.onContextMenu.bind(this)}
-      >
-        Hello
-      </td>
+      />
     );
   }
 }
