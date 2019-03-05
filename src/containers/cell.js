@@ -8,11 +8,45 @@ import classNames from "classnames";
 class Cell extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleContextMenu = this.handleContextMenu.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this);
   }
-  handleClick(e) {
+  handleChange(e) {
+    console.log("change", e);
     e.preventDefault();
   }
-  onContextMenu(e) {
+  handleContextMenu(e) {
+    console.log("contextMenu", e);
+    e.preventDefault();
+  }
+  handleClick(e) {
+    console.log("click", e);
+    e.preventDefault();
+  }
+  handleDoubleClick(e) {
+    console.log("doubleClick", e);
+    e.preventDefault();
+  }
+  handleKeyDown(e) {
+    console.log("KeyDown", e);
+    e.preventDefault();
+  }
+  handleMouseOver(e) {
+    console.log("MouseOver", e);
+    e.preventDefault();
+  }
+  handleMouseOut(e) {
+    console.log("MouseOut", e);
+    e.preventDefault();
+  }
+  handleMouseDown(e) {
+    console.log("MouseDown", e);
     e.preventDefault();
   }
   render() {
@@ -22,8 +56,14 @@ class Cell extends Component {
     return (
       <td
         className={classes}
-        onClick={this.handleClick.bind(this)}
-        onContextMenu={this.onContextMenu.bind(this)}
+        // onClick={this.handleClick}
+        onChange={this.handleChange}
+        onContextMenu={this.handleContextMenu}
+        onDoubleClick={this.handleDoubleClick}
+        // onKeyDown={this.handleKeyDown}
+        // onMouseOver={this.handleMouseOver}
+        // onMouseOut={this.handleMouseOut}
+        // onMouseDown={this.handleMouseDown}
       />
     );
   }

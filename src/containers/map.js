@@ -12,18 +12,13 @@ class Map extends Component {
   }
   renderMap() {
     if (this.props.actualMap.length) {
-      let row = -1;
-      let column = -1;
-      let map = this.props.actualMap.map((item, index) => {
-        row++;
-        column = -1;
+      let map = this.props.actualMap.map((item, row) => {
         return (
-          <tr key={index} className="mapRow">
-            {item.map((subitem, i) => {
-              column++;
+          <tr key={row} className="mapRow">
+            {item.map((subitem, column) => {
               return (
                 <Cell
-                  key={Math.random()}
+                  key={column}
                   row={row}
                   column={column}
                   // clicked={this.props.clickedMap[row][column]}
