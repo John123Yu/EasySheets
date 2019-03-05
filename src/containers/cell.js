@@ -47,6 +47,7 @@ class Cell extends Component {
   }
   handleMouseDown(e) {
     console.log("MouseDown", e);
+    // console.log(e.target);
     e.preventDefault();
   }
   render() {
@@ -55,29 +56,30 @@ class Cell extends Component {
     });
     return (
       <td
+        tabIndex="1"
         className={classes}
         // onClick={this.handleClick}
         onChange={this.handleChange}
         onContextMenu={this.handleContextMenu}
         onDoubleClick={this.handleDoubleClick}
-        // onKeyDown={this.handleKeyDown}
-        // onMouseOver={this.handleMouseOver}
+        onKeyDown={this.handleKeyDown}
+        onMouseOver={this.handleMouseOver}
         // onMouseOut={this.handleMouseOut}
-        // onMouseDown={this.handleMouseDown}
+        onMouseDown={this.handleMouseDown}
       />
     );
   }
 }
 
-function mapStateToProps({}) {
-  return {};
-}
+// function mapStateToProps({}) {
+//   return {};
+// }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Cell);

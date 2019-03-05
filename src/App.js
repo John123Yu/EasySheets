@@ -14,4 +14,7 @@ class App extends Component {
   }
 }
 
+document.body.addEventListener("keydown", e => {
+  console.log("keydown", e);
+});
 export default App;
