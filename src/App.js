@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Map from "./containers/map";
-import jQuery from "jquery";
-
 // import logo from "./logo.svg";
 import "./App.css";
 
@@ -15,9 +13,21 @@ class App extends Component {
   }
 }
 
-document.write("HELLO");
-// let cellInput: String = "";
+sessionStorage.setItem("keydown", "");
+
 document.body.addEventListener("keydown", e => {
-  console.log(jQuery(document));
+  let keydown = sessionStorage.getItem("keydown");
+  let keyCodeString = String.fromCharCode(e.keyCode);
+  if (validAlphaNum(keyCodeString)) keydown += e.key;
+  if (e.keyCode === 8) keydown = "";
+  sessionStorage.setItem("keydown", keydown);
+  console.log(keydown);
 });
+
 export default App;
+
+let validAlphaNum = input => {
+  //regex for number, symbol, letter
+  if (/[a-zA-Z0-9-_]/.test(input)) return true;
+  return false;
+};
