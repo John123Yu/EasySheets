@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {} from "../actions/index";
 import classNames from "classnames";
+import jQuery from "jquery";
+
 // import Rx from "rx";
 
 class Cell extends Component {
@@ -47,6 +49,7 @@ class Cell extends Component {
   }
   handleMouseDown(e) {
     console.log("MouseDown", e);
+    console.log("document", jQuery(document));
     // console.log(e.target);
     e.preventDefault();
   }
@@ -61,9 +64,9 @@ class Cell extends Component {
         // onClick={this.handleClick}
         onChange={this.handleChange}
         onContextMenu={this.handleContextMenu}
-        onDoubleClick={this.handleDoubleClick}
-        onKeyDown={this.handleKeyDown}
-        onMouseOver={this.handleMouseOver}
+        // onDoubleClick={this.handleDoubleClick}
+        // onKeyDown={this.handleKeyDown}
+        // onMouseOver={this.handleMouseOver}
         // onMouseOut={this.handleMouseOut}
         onMouseDown={this.handleMouseDown}
       />
