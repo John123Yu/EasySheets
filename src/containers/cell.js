@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {} from "../actions/index";
 import classNames from "classnames";
-import jQuery from "jquery";
 
 // import Rx from "rx";
 
@@ -48,15 +47,15 @@ class Cell extends Component {
     e.preventDefault();
   }
   handleMouseDown(e) {
-    console.log("MouseDown", e);
-    console.log("document", jQuery(document));
-    // console.log(e.target);
     e.preventDefault();
+    this.keyPut = sessionStorage.getItem("keydown");
+    this.forceUpdate();
   }
   render() {
     let classes = classNames({
       cell: true
     });
+    let keyPut = this.keyPut;
     return (
       <td
         tabIndex="1"
@@ -69,7 +68,9 @@ class Cell extends Component {
         // onMouseOver={this.handleMouseOver}
         // onMouseOut={this.handleMouseOut}
         onMouseDown={this.handleMouseDown}
-      />
+      >
+        {keyPut}
+      </td>
     );
   }
 }

@@ -21,7 +21,7 @@ document.body.addEventListener("keydown", e => {
   if (validAlphaNum(keyCodeString)) keydown += e.key;
   if (e.keyCode === 8) keydown = "";
   sessionStorage.setItem("keydown", keydown);
-  console.log(keydown);
+  // console.log(keydown);
 });
 
 export default App;
