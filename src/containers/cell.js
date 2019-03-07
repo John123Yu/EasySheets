@@ -13,7 +13,7 @@ class Cell extends Component {
     this.handleContextMenu = this.handleContextMenu.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    // this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -48,7 +48,8 @@ class Cell extends Component {
   }
   handleMouseDown(e) {
     e.preventDefault();
-    this.keyPut = sessionStorage.getItem("keydown");
+    // this.keyPut = sessionStorage.getItem("keydown");
+    document.addEventListener("keydown", this.handleKeyDown.bind(this));
     this.forceUpdate();
   }
   render() {

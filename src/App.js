@@ -13,16 +13,16 @@ class App extends Component {
   }
 }
 
-sessionStorage.setItem("keydown", "");
+// sessionStorage.setItem("keydown", "");
 
-document.body.addEventListener("keydown", e => {
-  let keydown = sessionStorage.getItem("keydown");
-  let keyCodeString = String.fromCharCode(e.keyCode);
-  if (validAlphaNum(keyCodeString)) keydown += e.key;
-  if (e.keyCode === 8) keydown = "";
-  sessionStorage.setItem("keydown", keydown);
-  // console.log(keydown);
-});
+// document.body.addEventListener("keydown", e => {
+//   let keydown = sessionStorage.getItem("keydown");
+//   let keyCodeString = String.fromCharCode(e.keyCode);
+//   if (validAlphaNum(keyCodeString)) keydown += e.key;
+//   if (e.keyCode === 8) keydown = "";
+//   sessionStorage.setItem("keydown", keydown);
+//   // console.log(keydown);
+// });
 
 export default App;
 
