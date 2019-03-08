@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
 import {} from "../actions/index";
 import classNames from "classnames";
-import validAlphaNum from "../helpers/primary";
+import { validAlphaNum } from "../helpers/primary";
 
 // import Rx from "rx";
 export default function CellHook(props) {
