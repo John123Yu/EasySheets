@@ -7,17 +7,28 @@ import { validAlphaNum } from "../helpers/primary";
 
 // import Rx from "rx";
 export default function CellHook(props) {
-  const [cellput, setCellput] = useState("");
+  //   console.log(props);
+  let { handleKeyDown, theMap } = props;
+  console.log("HEREEEE", theMap);
+  //   const [cellput, setCellput] = useState("");
+  const [state, setState] = useState(false);
 
+  //   props.handleKeyDown(23, 1, 1);
+  function handleKeyDownWrap(e) {
+    console.log(e);
+    setState(!state);
+    return handleKeyDown(e);
+  }
+  console.log(handleKeyDown);
   function handleClick(e) {
     console.log("click");
   }
-  function handleKeyDown(e) {
-    let keyCodeString = String.fromCharCode(e.keyCode);
-    let key = e.key;
-    if (validAlphaNum(keyCodeString)) setCellput(state => (state += key));
-    if (e.keyCode === 8) setCellput(state => (state = ""));
-  }
+  //   function handleKeyDown(e) {
+  //     let keyCodeString = String.fromCharCode(e.keyCode);
+  //     let key = e.key;
+  //     if (validAlphaNum(keyCodeString)) setCellput(state => (state += key));
+  //     if (e.keyCode === 8) setCellput(state => (state = ""));
+  //   }
 
   let classes = classNames({
     cell: true
@@ -28,7 +39,7 @@ export default function CellHook(props) {
       tabIndex="1"
       className={classes}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onKeyDown={handleKeyDownWrap}
       //   onChange={this.handleChange}
       //   onContextMenu={this.handleContextMenu}
       // onDoubleClick={this.handleDoubleClick}
@@ -36,7 +47,7 @@ export default function CellHook(props) {
       // onMouseOut={this.handleMouseOut}
       //   onMouseDown={this.handleMouseDown}
     >
-      {cellput}
+      {theMap}
     </td>
   );
 }

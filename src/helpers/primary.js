@@ -9,7 +9,7 @@ export function nestedArray(X, Y) {
   for (let i = 0; i < X; i++) {
     let inner_array = [];
     for (let j = 0; j < Y; j++) {
-      inner_array.push(null);
+      inner_array.push("");
     }
     outer_array.push(inner_array);
   }
