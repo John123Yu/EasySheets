@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { initMap } from "../actions/index";
 import Cell from "./cell";
+import CellHook from "./cellhook";
 
 class Map extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Map extends Component {
           <tr key={row} className="mapRow">
             {item.map((subitem, column) => {
               return (
-                <Cell
+                <CellHook
                   key={column}
                   row={row}
                   column={column}

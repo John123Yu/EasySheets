@@ -25,9 +25,3 @@ class App extends Component {
 // });
 
 export default App;
-
-let validAlphaNum = input => {
-  //regex for number, symbol, letter
-  if (/[a-zA-Z0-9-_]/.test(input)) return true;
-  return false;
-};
