@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import CellHook from "./cellhook";
-import { nestedArray, validAlphaNum, extendNestedArray } from "../helpers/primary";
+import {
+  nestedArray,
+  validAlphaNum,
+  extendNestedArray
+} from "../helpers/primary";
 
+//this variable name probably needs to be changed;
 let theMap;
 
 export default function Map() {
@@ -11,32 +16,51 @@ export default function Map() {
   const [scrollY, setScrollY] = useState(window.scrollY);
   const [windowX, setWindowX] = useState(window.innerWidth);
   const [windowY, setWindowY] = useState(window.innerHeight);
-  
+
   const cellsX = Math.floor(windowX / 100);
   const cellsY = Math.floor(windowY / 20);
+  let sR = 0; //selectedRow
+  let sC = 0; //selectedCol
   // console.log("cellsX", cellsX)
-
   if (theMap === undefined) theMap = nestedArray(cellsY, cellsX);
   else theMap = extendNestedArray(cellsY, cellsX, theMap);
   // console.log(theMap)
-
-  useInterval(() => {
-    setScrollX(window.scrollX);
-    setScrollY(window.scrollY);
-    setWindowX(window.innerWidth);
-    setWindowY(window.innerHeight);
-  }, 1000);
-
-  console.log("WindowX", windowX);
-  console.log("ScrollX", scrollX);
-
-
-  let handleKeyDownSetup = _.curry((row, column, e) => {
-    let keyCodeString = String.fromCharCode(e.keyCode);
-    let key = e.key;
-    if (validAlphaNum(keyCodeString)) theMap[row][column] += key;
-    if (e.keyCode === 8) theMap[row][column] = "";
-  });
+  //---Temp Disable this---//
+  // useInterval(() => {
+  //   setScrollX(window.scrollX);
+  //   setScrollY(window.scrollY);
+  //   setWindowX(window.innerWidth);
+  //   setWindowY(window.innerHeight);
+  // }, 1000);
+  // console.log("WindowX", windowX);
+  // console.log("ScrollX", scrollX);
+  let handleKeyDown = (row, column, e) => {
+    console.log("keyCode", e.keyCode);
+    switch (e.keyCode) {
+      case 8:
+        theMap[sR][sC] = "";
+        break;
+      case 37:
+        sC--;
+        break;
+      case 38:
+        sR--;
+        break;
+      case 39:
+        sC++;
+        break;
+      case 40:
+        sR++;
+        break;
+      default:
+        theMap[sR][sC] += e.key;
+    }
+  };
+  let handleClick = (row, col) => {
+    console.log("CLICK", row, col);
+    sR = row;
+    sC = col;
+  };
 
   return (
     <div>
@@ -46,13 +70,13 @@ export default function Map() {
             return (
               <tr key={row} className="mapRow">
                 {item.map((subitem, column) => {
-                  const handleKeyDown = handleKeyDownSetup(row, column);
                   return (
                     <CellHook
                       key={column}
                       row={row}
                       column={column}
                       handleKeyDown={handleKeyDown}
+                      handleClick={handleClick}
                       theMap={theMap}
                     />
                   );
