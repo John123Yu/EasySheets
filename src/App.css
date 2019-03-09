@@ -31,3 +31,36 @@
     transform: rotate(360deg);
   }
 }
+
+/*map.js*/
+table {
+  position: relative;
+  left: 100px;
+  top: 100px;
+}
+.mapRow {
+  display: flex;
+  border-right: 1px solid grey;
+}
+.mapRow:last-child {
+  border-bottom: 1px solid grey;
+}
+
+/*cell.js*/
+.cell {
+  border: 1px solid grey;
+  border-bottom: none;
+  border-right: none;
+  cursor: cell;
+  font-size: 12px;
+  font-family: Open Sans, sans-serif;
+  height: 15px;
+  padding: 0;
+  text-align: right;
+  vertical-align: bottom;
+  width: 90px;
+  /* display: block; */
+  /* white-space: normal; */
+  /* border-collapse: collapse; */
+  /* border-spacing: 2px; */
+}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Map from "./containers/map";
-
 // import logo from "./logo.svg";
 import "./App.css";
 
