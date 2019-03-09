@@ -33,6 +33,11 @@
 }
 
 /*map.js*/
+table {
+  position: relative;
+  left: 100px;
+  top: 100px;
+}
 .mapRow {
   display: flex;
   border-right: 1px solid grey;
@@ -49,11 +54,11 @@
   cursor: cell;
   font-size: 12px;
   font-family: Open Sans, sans-serif;
-  height: 20px;
+  height: 15px;
   padding: 0;
   text-align: right;
   vertical-align: bottom;
-  width: 150px;
+  width: 90px;
   /* display: block; */
   /* white-space: normal; */
   /* border-collapse: collapse; */

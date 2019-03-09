@@ -26,12 +26,6 @@ export default function CellHook(props) {
       className={classes}
       onClick={handleClick}
       onKeyDown={handleKeyDownWrap}
-      //   onChange={this.handleChange}
-      //   onContextMenu={this.handleContextMenu}
-      // onDoubleClick={this.handleDoubleClick}
-      // onMouseOver={this.handleMouseOver}
-      // onMouseOut={this.handleMouseOut}
-      //   onMouseDown={this.handleMouseDown}
     >
       {theMap[row][column]}
     </td>

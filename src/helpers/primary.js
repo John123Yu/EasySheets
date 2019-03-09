@@ -15,3 +15,22 @@ export function nestedArray(X, Y) {
   }
   return outer_array;
 }
+
+export function clone_nested_array(old_array) {
+  let new_array = [];
+  for (let i = 0; i < old_array.length; i++) {
+    new_array.push([]);
+    for (let j = 0; j < old_array.length; j++) {
+      new_array[i][j] = old_array[i][j];
+    }
+  }
+  return new_array;
+}
+
+export function clone_array(old_array) {
+  let new_array = [];
+  for (let i = 0; i < old_array.length; i++) {
+    new_array.push(old_array[i]);
+  }
+  return new_array;
+}
