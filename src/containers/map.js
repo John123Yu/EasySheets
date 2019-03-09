@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import CellHook from "./cellhook";
+import { useInterval } from "../hooks";
 import {
   nestedArray,
   validAlphaNum,
@@ -67,12 +68,13 @@ export default function Map() {
           {theMap.map((item, row) => {
             return (
               <tr key={row} className="mapRow">
-                {item.map((subitem, column) => {
+                {item.map((subitem, col) => {
                   return (
                     <CellHook
-                      key={column}
+                      key={col}
                       row={row}
-                      column={column}
+                      column={col}
+                      // selected={sR===row && sC===col}
                       handleKeyDown={handleKeyDown}
                       handleClick={handleClick}
                       theMap={theMap}
@@ -86,23 +88,4 @@ export default function Map() {
       </table>
     </div>
   );
-}
-
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
 }

@@ -19,8 +19,7 @@ export default function CellHook(props) {
   }
 
   let classes = classNames({
-    cell: true,
-    selected: false
+    cell: true
   });
   return (
     <td
@@ -30,7 +29,6 @@ export default function CellHook(props) {
       onClick={handleClickWrap}
       onKeyDown={handleKeyDownWrap}
       onChange={() => console.log("change")}
-      //   onNavigate={() => console.log("nav")}
     >
       {theMap[row][column]}
     </td>
