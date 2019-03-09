@@ -7,13 +7,14 @@ export default function CellHook(props) {
   let { handleKeyDown, handleClick, theMap, row, column } = props;
   //   console.log("CELL RERENDER", row, column);
   const [state, setState] = useState(false);
+  let rerender = () => setState(!state);
 
   function handleKeyDownWrap(e) {
-    setState(!state);
-    return handleKeyDown(row, column, e);
+    rerender();
+    return handleKeyDown(e);
   }
-
   function handleClickWrap(e) {
+    rerender();
     handleClick(row, column);
   }
 
@@ -24,18 +25,14 @@ export default function CellHook(props) {
   return (
     <td
       tabIndex="1"
+      id={`${row}_${column}`}
       className={classes}
       onClick={handleClickWrap}
       onKeyDown={handleKeyDownWrap}
+      onChange={() => console.log("change")}
+      //   onNavigate={() => console.log("nav")}
     >
       {theMap[row][column]}
     </td>
   );
 }
-
-// let handleKeyDownSetup = _.curry((row, column, e) => {
-//   let keyCodeString = String.fromCharCode(e.keyCode);
-//   let key = e.key;
-//   if (validAlphaNum(keyCodeString)) theMap[row][column] += key;
-//   if (e.keyCode === 8) theMap[row][column] = "";
-// });

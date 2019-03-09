@@ -34,7 +34,8 @@ export default function Map() {
   // }, 1000);
   // console.log("WindowX", windowX);
   // console.log("ScrollX", scrollX);
-  let handleKeyDown = (row, column, e) => {
+  let handleKeyDown = e => {
+    e.preventDefault();
     console.log("keyCode", e.keyCode);
     switch (e.keyCode) {
       case 8:
@@ -55,12 +56,9 @@ export default function Map() {
       default:
         theMap[sR][sC] += e.key;
     }
+    document.getElementById(`${sR}_${sC}`).innerHTML = theMap[sR][sC];
   };
-  let handleClick = (row, col) => {
-    console.log("CLICK", row, col);
-    sR = row;
-    sC = col;
-  };
+  let handleClick = (row, col) => { sR = row; sC = col; };
 
   return (
     <div>
