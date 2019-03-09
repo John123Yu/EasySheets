@@ -1,23 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import CellHook from "./cellhook";
-import { nestedArray, validAlphaNum } from "../helpers/primary";
+import { nestedArray, validAlphaNum, extendNestedArray } from "../helpers/primary";
+
+let theMap;
 
 export default function Map() {
   console.log("MAP RERENDER");
-  const [theMap, setMap] = useState(() => {
-    let initMap = nestedArray(4, 4);
-    return initMap;
-  });
-  const [scrollY, setScrollY] = useState(window.scrollY);
   const [scrollX, setScrollX] = useState(window.scrollX);
+  const [scrollY, setScrollY] = useState(window.scrollY);
+  const [windowX, setWindowX] = useState(window.innerWidth);
+  const [windowY, setWindowY] = useState(window.innerHeight);
+  
+  const cellsX = Math.floor(windowX / 100);
+  const cellsY = Math.floor(windowY / 20);
+  // console.log("cellsX", cellsX)
+
+  if (theMap === undefined) theMap = nestedArray(cellsY, cellsX);
+  else theMap = extendNestedArray(cellsY, cellsX, theMap);
+  // console.log(theMap)
 
   useInterval(() => {
-    setScrollY(window.scrollY);
     setScrollX(window.scrollX);
+    setScrollY(window.scrollY);
+    setWindowX(window.innerWidth);
+    setWindowY(window.innerHeight);
   }, 1000);
-  console.log("X", scrollY);
-  console.log("X", scrollX);
+
+  console.log("WindowX", windowX);
+  console.log("ScrollX", scrollX);
 
 
   let handleKeyDownSetup = _.curry((row, column, e) => {

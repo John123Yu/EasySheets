@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 export default function CellHook(props) {
   let { handleKeyDown, theMap, row, column } = props;
-  console.log("CELL RERENDER", row, column);
+  //   console.log("CELL RERENDER", row, column);
   const [state, setState] = useState(false);
 
   function handleKeyDownWrap(e) {

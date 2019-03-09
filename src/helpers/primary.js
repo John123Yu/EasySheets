@@ -4,33 +4,43 @@ export function validAlphaNum(input) {
   return false;
 }
 
-export function nestedArray(X, Y) {
-  let outer_array = [];
-  for (let i = 0; i < X; i++) {
-    let inner_array = [];
-    for (let j = 0; j < Y; j++) {
-      inner_array.push("");
+export function nestedArray(row, col) {
+  let outerArray = [];
+  for (let i = 0; i < row; i++) {
+    let innerArray = [];
+    for (let j = 0; j < col; j++) {
+      innerArray.push("");
     }
-    outer_array.push(inner_array);
+    outerArray.push(innerArray);
   }
-  return outer_array;
+  return outerArray;
 }
 
-export function clone_nested_array(old_array) {
-  let new_array = [];
-  for (let i = 0; i < old_array.length; i++) {
-    new_array.push([]);
-    for (let j = 0; j < old_array.length; j++) {
-      new_array[i][j] = old_array[i][j];
+export function extendNestedArray(rows, cols, array) {
+  for (let i = 0; i < rows; i++) {
+    if (array[i] === undefined) array[i] = [];
+    for (let j = 0; j < cols; j++) {
+      if (array[i][j] === undefined) array[i][j] = "";
     }
   }
-  return new_array;
+  return array;
 }
 
-export function clone_array(old_array) {
-  let new_array = [];
-  for (let i = 0; i < old_array.length; i++) {
-    new_array.push(old_array[i]);
+export function clone_nested_array(prevArray) {
+  let newArray = [];
+  for (let i = 0; i < prevArray.length; i++) {
+    newArray.push([]);
+    for (let j = 0; j < prevArray.length; j++) {
+      newArray[i][j] = prevArray[i][j];
+    }
   }
-  return new_array;
+  return newArray;
+}
+
+export function clone_array(prevArray) {
+  let newArray = [];
+  for (let i = 0; i < prevArray.length; i++) {
+    newArray.push(prevArray[i]);
+  }
+  return newArray;
 }
