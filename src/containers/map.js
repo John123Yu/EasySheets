@@ -4,22 +4,26 @@ import CellHook from "./cellhook";
 import { useInterval } from "../hooks";
 import {
   nestedArray,
-  validAlphaNum,
-  extendNestedArray
+  extendNestedArray,
+  nestedObj,
+  extendNestedObj
 } from "../helpers/primary";
 import { mergeSort } from "../helpers/sorts";
+import { createTempVariable } from "typescript";
 //this variable name probably needs to be changed;
 let theMap;
 
 export default function Map() {
+  const [state, setState] = useState(false);
+  let rerender = () => setState(!state);
   console.log("MAP RERENDER");
   const [scrollX, setScrollX] = useState(window.scrollX);
   const [scrollY, setScrollY] = useState(window.scrollY);
   const [windowX, setWindowX] = useState(window.innerWidth);
   const [windowY, setWindowY] = useState(window.innerHeight);
 
-  const cellsX = Math.floor(windowX / 100);
-  const cellsY = Math.floor(windowY / 20);
+  const cellsX = Math.floor((windowX + scrollX)/ 200);
+  const cellsY = Math.floor((windowY + scrollY) / 60);
   let sR = 0; //selectedRow
   let sC = 0; //selectedCol
   // console.log("cellsX", cellsX)
@@ -54,20 +58,32 @@ export default function Map() {
       case 40:
         sR++;
         break;
+      case 17:
+        break;
       default:
         theMap[sR][sC] += e.key;
     }
     document.getElementById(`${sR}_${sC}`).innerHTML = theMap[sR][sC];
   };
-  let handleClick = (row, col) => {
+  function handleClick(row, col) {
     sR = row;
     sC = col;
   };
+  function handleContextMenu(e) {
+    e.preventDefault();
+    theMap = theMap.sort(function(a,b){
+      return b[0] - a[0]
+    })
+    console.log("this", theMap)
+    rerender();
+  }
 
   return (
     <div>
       <table>
-        <tbody>
+        <tbody
+          onContextMenu={handleContextMenu}
+        >
           {theMap.map((item, row) => {
             return (
               <tr key={row} className="mapRow">

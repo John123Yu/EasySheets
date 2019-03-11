@@ -1,4 +1,5 @@
 export function mergeSort(arr) {
+  //need to verify optimization
   if (arr.length === 1) {
     return arr;
   }
@@ -12,14 +13,18 @@ function merge(left, right) {
   let indexLeft = 0;
   let indexRight = 0;
   while (indexLeft < left.length && indexRight < right.length) {
-    left[indexLeft] < right[indexRight] ? result.push(left[indexLeft++]) : result.push(right[indexRight++]);
+    left[indexLeft] < right[indexRight]
+      ? result.push(left[indexLeft++])
+      : result.push(right[indexRight++]);
   }
-  let answer = result.concat(left.splice(indexLeft)).concat(right.splice(indexRight))
-  left = [];
-  right = [];
+  let answer = result
+    .concat(left.splice(indexLeft))
+    .concat(right.splice(indexRight));
   return answer;
 }
 
+let arr = [1,2,3]
+// arr.sort()
 export function quickSort() {}
 
 export function insertionSort(array) {
