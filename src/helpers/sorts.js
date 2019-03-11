@@ -1,33 +1,23 @@
 export function mergeSort(arr) {
   if (arr.length === 1) {
-    // return once we hit an array with a single item
     return arr;
   }
-
-  const middle = Math.floor(arr.length / 2); // get the middle item of the array rounded down
-  const left = arr.slice(0, middle); // items on the left side
-  const right = arr.slice(middle); // items on the right side
-
-  return merge(mergeSort(left), mergeSort(right));
+  const middle = Math.floor(arr.length / 2);
+  const left = arr.splice(0, middle);
+  return merge(mergeSort(left), mergeSort(arr));
 }
 
-// compare the arrays item by item and return the concatenated result
 function merge(left, right) {
   let result = [];
   let indexLeft = 0;
   let indexRight = 0;
-
   while (indexLeft < left.length && indexRight < right.length) {
-    if (left[indexLeft] < right[indexRight]) {
-      result.push(left[indexLeft]);
-      indexLeft++;
-    } else {
-      result.push(right[indexRight]);
-      indexRight++;
-    }
+    left[indexLeft] < right[indexRight] ? result.push(left[indexLeft++]) : result.push(right[indexRight++]);
   }
-
-  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+  let answer = result.concat(left.splice(indexLeft)).concat(right.splice(indexRight))
+  left = [];
+  right = [];
+  return answer;
 }
 
 export function quickSort() {}
@@ -41,9 +31,9 @@ export function insertionSort(array) {
     }
     array[j + 1] = temp;
   }
-  //   return array;
+  return array;
 }
-//not for production code
+
 function isSorted(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i + 1] < arr[i]) return false;
@@ -71,3 +61,12 @@ function isSorted(arr) {
 //   }
 //   return arr;
 // }
+
+function swap(arr) {
+  if (arr[1] < arr[0]) {
+    let temp = arr[1];
+    arr[1] = arr[0];
+    arr[0] = temp;
+  }
+  return arr;
+}

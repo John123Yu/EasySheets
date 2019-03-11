@@ -7,7 +7,7 @@ import {
   validAlphaNum,
   extendNestedArray
 } from "../helpers/primary";
-
+import { mergeSort } from "../helpers/sorts";
 //this variable name probably needs to be changed;
 let theMap;
 
