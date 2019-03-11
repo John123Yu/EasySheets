@@ -59,7 +59,10 @@ export default function Map() {
     }
     document.getElementById(`${sR}_${sC}`).innerHTML = theMap[sR][sC];
   };
-  let handleClick = (row, col) => { sR = row; sC = col; };
+  let handleClick = (row, col) => {
+    sR = row;
+    sC = col;
+  };
 
   return (
     <div>
